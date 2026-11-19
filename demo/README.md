@@ -15,7 +15,6 @@ source .venv/bin/activate
 mkdir -p .cache/tmp
 export TMPDIR="$PWD/.cache/tmp" PIP_NO_CACHE_DIR=1
 python -m pip install --upgrade pip setuptools wheel packaging ninja
-python -m pip install torch==2.8.0 torchaudio==2.8.0
 python -m pip install -r requirements.txt
 python -m pip install flash-attn==2.8.3 --no-build-isolation
 python scripts/prepare_environment.py

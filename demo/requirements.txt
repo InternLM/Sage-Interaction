@@ -2,6 +2,7 @@
 torch==2.8.0
 torchaudio==2.8.0
 transformers==4.51.0
+accelerate==1.12.0
 stepaudio2-minicpmo==0.1.1
 diffusers==0.39.0
 onnxruntime==1.27.0

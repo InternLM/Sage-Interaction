@@ -217,6 +217,7 @@ def check_environment(cfg):
     for module in (
         "torch",
         "transformers",
+        "accelerate",
         "stepaudio2",
         "fastapi",
         "uvicorn",
