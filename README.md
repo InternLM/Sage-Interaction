@@ -30,6 +30,18 @@ Sage-Interaction operates within a coordinated frontend–backend system. The fr
 
 ## Demo
 
+### Task Delegation
+
+https://github.com/user-attachments/assets/f8e29f62-af42-41c1-b9b3-24826cd6bc75
+
+### Lab Protocol Assistance
+
+https://github.com/user-attachments/assets/4bf66cba-deb8-4a90-9668-443e9f493e19
+
+### Lab Safety Alerts
+
+https://github.com/user-attachments/assets/5c4da4f5-a9a6-40ce-aa26-0f734e18f8bc
+
 For installation and usage, see the [Demo guide](demo/README.md).
 
 ## Performance
