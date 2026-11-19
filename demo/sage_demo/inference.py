@@ -3,7 +3,6 @@
 import argparse
 import asyncio
 import base64
-import hashlib
 from concurrent.futures import ThreadPoolExecutor
 from contextlib import asynccontextmanager
 import json
@@ -22,7 +21,6 @@ from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 import uvicorn
 
 from sage_demo.protocol import (
-    PROJECT,
     configuration,
     delegate_query,
     ask_backend,
@@ -367,12 +365,6 @@ class VoiceEngine:
 
 
 def create_app(cfg, device):
-    runtime_revision = hashlib.sha256(
-        Path(__file__).read_bytes()
-        + (PROJECT / "sage_demo/streaming_actions.py").read_bytes()
-        + (PROJECT / "sage_demo/audio_input.py").read_bytes()
-        + (PROJECT / "sage_demo/query_routing.py").read_bytes()
-    ).hexdigest()[:12]
     pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix="native-duplex")
     state = dict(
         engine=None,
@@ -429,7 +421,6 @@ def create_app(cfg, device):
             allow_speech_interruption=cfg["allow_speech_interruption"],
             system_barge_in=cfg["enable_system_barge_in"],
             vad="webrtcvad" if cfg["enable_system_barge_in"] else "off",
-            runtime_revision=runtime_revision,
             input_noise_filter=bool(cfg.get("enable_input_noise_filter", False)),
             playback_echo_guard=bool(cfg.get("enable_playback_echo_guard", False)),
         )
@@ -862,9 +853,6 @@ def create_app(cfg, device):
                                 )
                         result["early_dispatch_samples"] = early_samples
                         result["early_dispatch_chunks"] = len(early_parts)
-                        result["dispatch_variant"] = engine.runtime_details[
-                            "dispatch_variant"
-                        ]
                         for raw_codec in result.pop("_codec_waveforms", []):
                             codec_audio.write(raw_codec)
                         result["model_input_rms"] = result["input_rms"]
@@ -1082,7 +1070,6 @@ def create_app(cfg, device):
                 output_epoch=output_epoch,
                 input_noise_filter=input_filter is not None,
                 allow_speech_interruption=cfg["allow_speech_interruption"],
-                system_prompt_sha256=hashlib.sha256(engine.prompt.encode()).hexdigest(),
             )
             (directory / "metadata.json").write_text(
                 json.dumps(metadata, indent=2) + "\n"
