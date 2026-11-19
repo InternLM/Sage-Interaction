@@ -1,0 +1,82 @@
+--- a/stepaudio2/token2wav.py
++++ b/stepaudio2/token2wav.py
+@@ -7,7 +7,6 @@
+ import s3tokenizer
+ import onnxruntime
+ import numpy as np
+-from copy import deepcopy
+ 
+ import torchaudio.compliance.kaldi as kaldi
+ from stepaudio2.flashcosyvoice.modules.hifigan import HiFTGenerator
+@@ -63,10 +62,10 @@
+ 
+ 
+ class Token2wav():
+-
+     def __init__(self, model_path, float16=False, n_timesteps=10):
+         self.float16 = float16
+         self.n_timesteps = n_timesteps
++
+         # 在加载 flow.yaml 之前，先把 cosyvoice2 的别名注册好
+         _setup_cosyvoice2_alias()
+ 
+@@ -99,7 +98,6 @@
+ 
+         # hifigan cache
+         self.hift_cache_dict = {}
+-
+ 
+     def _prepare_prompt(self, prompt_wav):
+         audio = s3tokenizer.load_audio(prompt_wav, sr=16000)  # [T]
+@@ -156,7 +154,7 @@
+         
+         # self.stream_cache = self.flow.setup_cache(
+         #     torch.cat([prompt_speech_tokens, prompt_speech_tokens[:, :3]], dim=1),
+-        #     prompt_mels, spk_emb, n_timesteps=10)
++        #     prompt_mels, spk_emb, n_timesteps=self.n_timesteps)
+         
+         stream_cache = self.flow.setup_cache(
+             torch.cat([prompt_speech_tokens, right_pad_speech_tokens], dim=1),
+@@ -204,7 +202,7 @@
+                 self.stream_cache['conformer_att_cache'][:, :, :, :prompt_mels.shape[1], :],
+                 self.stream_cache['conformer_att_cache'][:, :, :, -100:, :],
+             ], dim=3)
+-        
++
+         # vocoder cache
+         hift_cache_mel = self.hift_cache_dict['mel']
+         hift_cache_source = self.hift_cache_dict['source']
+@@ -216,6 +214,9 @@
+         # overlap speech smooth
+         if hift_cache_speech.shape[-1] > 0:
+             speech = fade_in_out(speech, hift_cache_speech, self.speech_window)
++
++        # 检测是否是第一个 chunk（没有有效的 speech cache）
++        is_first_chunk = hift_cache_speech.shape[-1] == 0
+ 
+         # update vocoder cache
+         self.hift_cache_dict = dict(
+@@ -223,13 +224,21 @@
+             source = source[:, :, -self.source_cache_len:].clone().detach(),
+             speech = speech[:, -self.source_cache_len:].clone().detach(),
+         )
++
+         if not last_chunk:
+-            speech = speech[:, :-self.source_cache_len]
++            if is_first_chunk:
++                # 第一个 chunk：截断尾部，在开头添加静音来补偿长度
++                # 不做淡入，保持原始音频内容不变
++                silence_padding = torch.zeros(1, self.source_cache_len, device=speech.device)
++                speech = torch.cat([silence_padding, speech[:, :-self.source_cache_len]], dim=1)
++            else:
++                # 后续 chunk：正常截断尾部（由下一个 chunk 的 fade_in 补偿）
++                speech = speech[:, :-self.source_cache_len]
+ 
+         wav_np = speech.cpu().numpy()
+         if return_waveform:
+             return wav_np
+-        
++
+         # Clip to [-1, 1] to avoid overflow, then scale to int16
+         wav_np = np.clip(wav_np, -1.0, 1.0)
+         wav_int16 = (wav_np * 32767.0).astype('<i2')  # 16-bit little-endian PCM

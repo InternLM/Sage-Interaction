@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#fcfbf7">
+  <title>Sage-Interaction · 实时对话</title>
+  <link rel="stylesheet" href="static/style.css?v=sage-interaction-clean-copy">
+  <link rel="stylesheet" href="static/camera-preview.css?v=3">
+</head>
+<body>
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="icon-chat" viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-8 8H4l1.8-4A8 8 0 1 1 20 11.5Z"/><path d="M8 10h8M8 14h5"/></symbol>
+    <symbol id="icon-new" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1.5"/><path d="M12 7v10M7 12h10"/></symbol>
+    <symbol id="icon-mic" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="13" rx="3"/><path d="M5.5 11v1a6.5 6.5 0 0 0 13 0v-1M12 18.5V22M8 22h8"/></symbol>
+    <symbol id="icon-task" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="1.5"/><path d="M9 7h6M9 11h6M9 15h3"/></symbol>
+    <symbol id="icon-model" viewBox="0 0 24 24"><path d="m12 2 9 5v10l-9 5-9-5V7l9-5Z"/><path d="m8 9 4 2 4-2M12 11v6"/></symbol>
+    <symbol id="icon-wave" viewBox="0 0 24 24"><path d="M4 10v4M8 6v12M12 3v18M16 7v10M20 10v4"/></symbol>
+    <symbol id="icon-math" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5ZM3 8v9l9 5 9-5V8M12 13v9M7.5 5.5l9 5"/></symbol>
+    <symbol id="icon-headphones" viewBox="0 0 24 24"><path d="M4 15v-4a8 8 0 0 1 16 0v4"/><rect x="3" y="12" width="4" height="8" rx="2"/><rect x="17" y="12" width="4" height="8" rx="2"/></symbol>
+  </svg>
+  <div class="announcement">欢迎来到 <strong>Sage-Interaction</strong><span class="announcement-divider">·</span>开启你的实时对话</div>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="对话侧边栏">
+      <a class="brand" href="./" aria-label="Sage-Interaction 首页">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="8"/><ellipse cx="16" cy="16" rx="16" ry="5" transform="rotate(-33 16 16)"/><path d="M24 2v5M21.5 4.5h5"/></svg>
+        <span>Sage-Interaction</span>
+      </a>
+      <nav class="navigation" aria-label="对话导航">
+        <a class="nav-item selected" href="./"><svg class="icon"><use href="#icon-new"/></svg><span>新建对话</span></a>
+        <a class="nav-item" href="#conversation"><svg class="icon"><use href="#icon-chat"/></svg><span>实时对话</span></a>
+        <details class="trace" open>
+          <summary class="nav-item"><svg class="icon"><use href="#icon-task"/></svg><span>委托记录</span><span id="delegateCount" class="count">0</span></summary>
+          <div id="trace"><p class="muted">复杂问题的委托过程会显示在这里。</p></div>
+        </details>
+      </nav>
+      <section class="model-panel" aria-label="对话引擎">
+        <h2 class="section-label">对话引擎</h2>
+        <div class="model"><svg class="icon"><use href="#icon-wave"/></svg><div><strong>sage-interaction</strong><small>倾听与表达</small></div><i id="frontLed" aria-label="sage-interaction 状态"></i></div>
+        <div class="model"><svg class="icon"><use href="#icon-model"/></svg><div><strong id="backendName">后台模型</strong><small>推理与检索</small></div><i id="backLed" aria-label="后台模型状态"></i></div>
+        <p id="capacity" class="capacity">服务状态核验中</p>
+      </section>
+      <div class="sidebar-bottom">
+        <div class="listening-note"><svg class="icon"><use href="#icon-headphones"/></svg><h2>让交流自然发生</h2><p>戴上耳机，随时开口。<br>在等待答案时，也能继续交流。</p></div>
+        <div class="sidebar-footer"><span class="avatar" aria-hidden="true">S</span><span>Sage-Interaction</span><span class="footer-mark" aria-hidden="true">✧</span></div>
+      </div>
+    </aside>
+    <main class="main-panel">
+      <div class="topbar"><span class="topbar-caption">Sage-Interaction</span><div class="camera-controls"><button id="cameraToggle" class="camera-toggle" type="button" aria-pressed="false" aria-controls="cameraPreview" aria-describedby="cameraMessage"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10 6-3v10l-6-3"/></svg><span id="cameraLabel">开启摄像头</span></button><p id="cameraMessage" class="camera-message" role="alert" hidden></p></div><div class="service-status"><i class="status-dot" id="statusDot"></i><span id="status">正在连接服务</span></div></div>
+      <section class="conversation" id="conversation" aria-label="实时对话">
+        <div class="messages" id="messages" role="log" aria-live="polite">
+          <div class="welcome" id="welcome">
+            <svg class="planet" viewBox="0 0 72 56" aria-hidden="true"><defs><mask id="planet-ring-cut"><rect width="72" height="56" fill="white"/><ellipse cx="36" cy="28" rx="34" ry="8" transform="rotate(-31 36 28)" fill="none" stroke="black" stroke-width="5"/></mask></defs><circle cx="36" cy="28" r="22" mask="url(#planet-ring-cut)"/><ellipse cx="36" cy="28" rx="34" ry="8" transform="rotate(-31 36 28)" fill="none" stroke="currentColor" stroke-width="3.3"/><path d="m5 13 2 3 3 .5-2.3 2 .3 3-2.7-1.5-2.8 1 .7-3-2-2.2 3-.2Zm60 19 1.3 2.8 3 .5-2.2 2 .3 3-2.5-1.6-2.7 1.1.7-2.9-1.9-2.3 3-.1Z"/></svg>
+            <h1>自然对话 <span>协同思考</span></h1>
+            <p>在同一段对话里倾听、思考与回应 · 让每一个问题都有所回应</p>
+          </div>
+        </div>
+        <form id="textForm" class="composer">
+          <input id="textInput" type="text" maxlength="3000" autocomplete="off" placeholder="描述一个问题、分享一个想法，或者直接开启语音对话……" aria-label="输入消息">
+          <div class="composer-toolbar">
+            <div class="voice-controls"><button class="mic" id="mic" type="button" disabled><svg class="icon"><use href="#icon-mic"/></svg><span id="micLabel">开始语音对话</span></button><button class="stop" id="stop" type="button" disabled>结束</button></div>
+            <div class="composer-actions"><span class="session"><svg class="icon"><use href="#icon-model"/></svg><span id="sessionLabel">实时语音</span></span><button id="send" type="submit" disabled aria-label="发送"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4M5 11l7-7 7 7"/></svg></button></div>
+          </div>
+        </form>
+        <div class="suggestions"><button id="math" class="suggestion" type="button" disabled><svg class="icon"><use href="#icon-math"/></svg>数学问题示例</button><span class="capability"><svg class="icon"><use href="#icon-wave"/></svg>连续倾听</span><span class="capability"><svg class="icon"><use href="#icon-model"/></svg>异步协同</span></div>
+        <div class="activity" id="activity" aria-live="polite">准备好后，点击麦克风开始对话</div>
+      </section>
+      <footer class="page-footer">Sage-Interaction <span>·</span> 以声音交流，以推理延伸</footer>
+    </main>
+  </div>
+      <section id="cameraPreview" class="camera-preview" aria-label="摄像头预览" hidden>
+        <div class="camera-preview-header"><span>摄像头预览</span><button id="cameraClose" class="camera-close" type="button" aria-label="关闭摄像头预览"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+        <div class="camera-preview-video-wrap">
+          <video id="cameraVideo" autoplay muted playsinline aria-label="本机摄像头画面"></video>
+          <div class="camera-preview-avatar"><img src="static/sage.png" alt=""></div>
+        </div>
+      </section>
+  <script type="module" src="static/app.js?v=sage-interaction-labels"></script>
+  <script type="module" src="static/camera-preview.js?v=1"></script>
+</body>
+</html>

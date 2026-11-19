@@ -1,0 +1,15 @@
+{
+  "stepaudio2/__init__.py": {
+    "patch": "__init__.patch",
+    "original_sha256": "6a17cb1139bb7e9fc0df6d0444aea3db14f89d3c9e732f0e03c67eb3254bb904",
+    "patched_sha256": "9cf69397812ff1650fe01f3a19b72b39666adc4061e10593f87a6607cf316e58",
+    "compatible_sha256": [
+      "4be6744b9c99e45e6efc33b583ab55e1d6838e88f0fc97cb1b3e04e0db40f548"
+    ]
+  },
+  "stepaudio2/token2wav.py": {
+    "patch": "token2wav.patch",
+    "original_sha256": "444cc626e52f85a074dced3ecb99d7bc3af18e996474cee668bceeead4682fac",
+    "patched_sha256": "0598c25ad9883f75d6d5ca1e9276c03adbfa0357a29442164198ea6931a06efb"
+  }
+}

@@ -11,7 +11,7 @@
 
 [English](README.md) | [简体中文](README_zh-CN.md)
 
-[Introduction](#introduction) • [Performance](#performance)
+[Introduction](#introduction) • [Performance](#performance) • [Demo](demo/README.md)
 
 </div>
 

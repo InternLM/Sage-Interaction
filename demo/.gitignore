@@ -1,0 +1,16 @@
+# Local configuration, credentials and runtime output
+config.local.json
+.env
+.env.*
+!.env.example
+.keys/
+*.key
+*.pem
+*.crt
+runs/
+logs/
+models/
+.cache/
+.venv/
+__pycache__/
+*.py[cod]

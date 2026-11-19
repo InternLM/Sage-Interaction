@@ -12,7 +12,7 @@
 
 [English](README.md) | [简体中文](README_zh-CN.md)
 
-[简介](#简介) • [性能评估](#性能评估)
+[简介](#简介) • [性能评估](#性能评估) • [Demo 使用说明](demo/README_zh-CN.md)
 
 </div>
 
