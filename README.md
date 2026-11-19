@@ -11,7 +11,7 @@
 
 [English](README.md) | [简体中文](README_zh-CN.md)
 
-[Introduction](#introduction) • [Performance](#performance) • [Demo](demo/README.md)
+[Introduction](#introduction) • [Demo](#demo) • [Performance](#performance)
 
 </div>
 
@@ -27,6 +27,10 @@ Sage-Interaction operates within a coordinated frontend–backend system. The fr
 - **Agentic task delegation.** Identify tasks suitable for delegation, submit them for asynchronous background execution, and incorporate returned results into subsequent conversation while remaining responsive to the user.
 - **Streaming video understanding.** Understand evolving visual context, respond proactively to relevant events, and support delegation of tasks grounded in a live video stream.
 - **Scenario-grounded interaction training.** Generate interaction trajectories with a role-playing multi-agent system grounded in real-world scenarios. An asymmetric audio-video supervision objective accounts for denser audio signals and sparser video signals.
+
+## Demo
+
+For installation and usage, see the [Demo guide](demo/README.md).
 
 ## Performance
 
