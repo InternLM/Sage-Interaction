@@ -33,7 +33,7 @@ Sage-Interaction 运行于前台与后台协同的系统中：前台负责实时
 
 ### 任务委托
 
-https://github.com/user-attachments/assets/f8e29f62-af42-41c1-b9b3-24826cd6bc75
+https://github.com/user-attachments/assets/5c4da4f5-a9a6-40ce-aa26-0f734e18f8bc
 
 ### 实验流程辅助
 
@@ -41,7 +41,7 @@ https://github.com/user-attachments/assets/4bf66cba-deb8-4a90-9668-443e9f493e19
 
 ### 实验室安全提醒
 
-https://github.com/user-attachments/assets/5c4da4f5-a9a6-40ce-aa26-0f734e18f8bc
+https://github.com/user-attachments/assets/f8e29f62-af42-41c1-b9b3-24826cd6bc75
 
 安装与使用方法见 [Demo 使用说明](demo/README_zh-CN.md)。
 
