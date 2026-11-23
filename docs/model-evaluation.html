@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interaction evaluation</title>
+  <style>
+    :root {
+      font-family: "GT America", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #282828;
+      background: #fff;
+      font-synthesis: none;
+    }
+
+    * { box-sizing: border-box; }
+
+    body { margin: 0; }
+
+    main {
+      width: min(100% - 32px, 1900px);
+      margin: clamp(24px, 4vh, 48px) auto;
+    }
+
+    .legend {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px 24px;
+      margin: 0 0 12px;
+      color: #777d80;
+      font-size: 16px;
+    }
+
+    .legend span { display: inline-flex; align-items: center; gap: 7px; }
+    .legend i { width: 10px; height: 10px; border-radius: 2px; background: #dfe2e4; }
+    .legend .featured { background: #73c9f2; }
+
+    .chart-scroll { overflow-x: auto; }
+
+    .groups {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 28px 8px;
+      align-items: start;
+      min-width: 1300px;
+    }
+
+    .group {
+      display: grid;
+      grid-template-columns: 132px minmax(0, 1fr) minmax(0, 1fr);
+      gap: 0 8px;
+      min-width: 0;
+    }
+
+    h2 {
+      grid-column: 1 / -1;
+      margin: 0 0 8px;
+      text-align: center;
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    figure { min-width: 0; margin: 0; }
+
+    .panels { display: contents; }
+
+    h3 {
+      margin: 0 43px 4px 0;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.3;
+    }
+    html[lang="zh-CN"] h3 { font-style: normal; }
+
+    .models-column { min-width: 0; }
+    .models-column h3 { visibility: hidden; }
+
+    .row, .model-row {
+      display: flex;
+      align-items: center;
+      min-height: 38px;
+    }
+
+    .model {
+      min-width: 0;
+      font-size: 13px;
+      line-height: 1.3;
+      overflow-wrap: anywhere;
+    }
+
+    .measure {
+      width: 100%;
+      min-width: 0;
+      padding-right: 43px;
+    }
+
+    .track { display: block; position: relative; height: 20px; min-width: 0; }
+    .bar {
+      display: block;
+      height: 100%;
+      width: var(--width);
+      border-radius: 3px;
+      background: #dfe2e4;
+    }
+
+    .value {
+      position: absolute;
+      left: calc(var(--width) + 5px);
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 13px;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+      color: #565a5d;
+    }
+
+    .highlight .model, .highlight .value { color: #087db8; font-weight: 600; }
+    .highlight .bar { background: #73c9f2; }
+
+    .chart-note {
+      margin: 24px 0 0;
+      color: #92979a;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .axis { margin-top: 2px; }
+
+    .axis-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-right: 43px;
+      padding-top: 7px;
+      border-top: 1px solid #d9dddf;
+      color: #777d80;
+      font-size: 11px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    @media (max-width: 560px) {
+      main { width: calc(100% - 16px); margin: 32px auto 48px; }
+      .legend { margin-bottom: 16px; font-size: 12px; }
+      h2 { font-size: 19px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="legend" aria-label="Bar colors"><span><i class="featured" aria-hidden="true"></i>Sage-Interaction</span><span><i aria-hidden="true"></i>Other models</span></div>
+    <div class="chart-scroll">
+      <div class="groups">
+        <section class="group" aria-labelledby="daily-title">
+          <h2 id="daily-title">Daily Delegation</h2>
+          <div class="panels" id="daily-charts"></div>
+        </section>
+        <section class="group" aria-labelledby="time-title">
+          <h2 id="time-title">Time Speak</h2>
+          <div class="panels" id="time-charts"></div>
+        </section>
+      </div>
+    </div>
+    <p class="chart-note">Full model names: GPT-2.1 (xhigh) = GPT-Realtime-2.1 (xhigh); GPT-2.1-mini (xhigh) = GPT-Realtime-2.1-mini (xhigh); Qwen3.5-Plus = Qwen3.5-Omni-plus-realtime; Qwen3.8-Flash = Qwen3.8-Omni-flash-realtime; Realtime-Venus = Realtime-Venus-Omni. Moss-Live and Sage-Interaction retain their supplied names.</p>
+    <!-- <p class="chart-note">Full model names: GPT-2.1 (xhigh) = GPT-Realtime-2.1 (xhigh); GPT-2.1-mini (xhigh) = GPT-Realtime-2.1-mini (xhigh); Qwen3.5-Plus = Qwen3.5-Omni-plus-realtime; Qwen3.8-Flash = Qwen3.8-Omni-flash-realtime; Realtime-Venus = Realtime-Venus-Omni. Moss-Live and Sage-Interaction retain their supplied names.</p> -->
+  </main>
+  <script>
+    const language = new URLSearchParams(window.location.search).get("lang") === "zh" ? "zh" : "en";
+    const isChinese = language === "zh";
+    document.documentElement.lang = isChinese ? "zh-CN" : "en";
+    const models = [
+      { name: "GPT-2.1 (xhigh)", daily: [65.69, 4.134], time: [90.61, 0.921] },
+      { name: "GPT-2.1-mini (xhigh)", daily: [67.61, 3.903], time: [83.33, 2.649] },
+      { name: "Qwen3.5-Plus", daily: [63.35, 4.135], time: [71.49, 1.761] },
+      { name: "Qwen3.8-Flash", daily: [55.77, 4.190], time: [74.60, 2.225] },
+      { name: "Moss-Live", daily: [43.48, 4.360], time: [79.07, 1.332] },
+      { name: "Realtime-Venus", timeName: "Realtime-Venus", daily: [21.90, 3.400], time: [22.60, 1.255] },
+      { name: "Sage-Interaction", daily: [80.47, 4.13], time: [85.96, 1.019] }
+    ];
+
+    function modelLabel(model, section) {
+      return section === "time" ? model.timeName || model.name : model.name;
+    }
+
+    function chart(section, metric, ordered) {
+      const f1 = metric === 0;
+      const latency = section === "time" && !f1;
+      const title = f1
+        ? (isChinese ? "任务委托 F1" : "Delegation F1")
+        : latency
+          ? (isChinese ? "延迟" : "Latency")
+          : (isChinese ? "质量" : "Quality");
+      const rows = ordered.map(model => {
+        const value = model[section][metric];
+        const label = value.toFixed(2) + (latency ? (isChinese ? " 秒" : "s") : "");
+        const width = value / (f1 ? 100 : latency ? 3 : 5) * 100;
+        const highlight = model.name === "Sage-Interaction" ? " highlight" : "";
+        const name = modelLabel(model, section);
+        return `<div class="row${highlight}" aria-label="${name}: ${label}"><div class="measure"><span class="track" style="--width:${width}%"><span class="bar"></span><span class="value">${label}</span></span></div></div>`;
+      }).join("");
+      const ticks = f1 ? ["0", "25", "50", "75", "100"] : latency ? ["0", "1", "2", isChinese ? "3 秒" : "3s"] : ["0", "1", "2", "3", "4", "5"];
+      const axis = `<div class="axis" aria-hidden="true"><div class="axis-labels">${ticks.map(tick => `<span>${tick}</span>`).join("")}</div></div>`;
+      const heading = latency ? `${title} ${isChinese ? "↓" : "&#8595;"}` : `${title} ${isChinese ? "↑" : "&#8593;"}`;
+      const ariaLabel = isChinese ? (latency ? "响应延迟，越低越好" : title) : (latency ? "Latency, lower is better" : title);
+      return `<figure class="${f1 ? "f1-chart" : latency ? "latency-chart" : "quality-chart"}" aria-label="${ariaLabel}"><h3>${heading}</h3>${rows}${axis}</figure>`;
+    }
+
+    for (const section of ["daily", "time"]) {
+      const ordered = [...models].sort((a, b) => b[section][0] - a[section][0]);
+      const names = ordered.map(model => `<div class="model-row${model.name === "Sage-Interaction" ? " highlight" : ""}"><span class="model">${modelLabel(model, section)}</span></div>`).join("");
+      document.getElementById(`${section}-charts`).innerHTML = `<div class="models-column"><h3 aria-hidden="true">&nbsp;</h3>${names}</div>` + chart(section, 0, ordered) + chart(section, 1, ordered);
+    }
+
+    if (isChinese) {
+      document.getElementById("daily-title").textContent = "日常任务委托";
+      document.getElementById("time-title").textContent = "定时发言";
+      const legend = document.querySelector(".legend");
+      legend.setAttribute("aria-label", "图例");
+      legend.lastElementChild.lastChild.textContent = "其他模型";
+      document.querySelector(".chart-note").textContent = "完整模型名称：GPT-2.1 (xhigh) = GPT-Realtime-2.1 (xhigh)；GPT-2.1-mini (xhigh) = GPT-Realtime-2.1-mini (xhigh)；Qwen3.5-Plus = Qwen3.5-Omni-plus-realtime；Qwen3.8-Flash = Qwen3.8-Omni-flash-realtime；Realtime-Venus = Realtime-Venus-Omni。Moss-Live 和 Sage-Interaction 保留原名。";
+    }
+
+    const reportFrameHeight = () => {
+      const main = document.querySelector("main");
+      const bottomMargin = parseFloat(getComputedStyle(main).marginBottom) || 0;
+      const height = Math.ceil(main.getBoundingClientRect().bottom + bottomMargin);
+      window.parent.postMessage({ type: "model-evaluation-height", height }, "*");
+    };
+    const scheduleFrameHeight = () => requestAnimationFrame(reportFrameHeight);
+    const heightObserver = new ResizeObserver(scheduleFrameHeight);
+    heightObserver.observe(document.querySelector("main"));
+    window.addEventListener("load", scheduleFrameHeight, { once: true });
+    window.addEventListener("resize", scheduleFrameHeight, { passive: true });
+    document.fonts?.ready.then(scheduleFrameHeight);
+    scheduleFrameHeight();
+  </script>
+</body>
+</html>
