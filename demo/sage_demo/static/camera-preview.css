@@ -10,7 +10,5 @@
 .camera-close:hover{background:#edf0f5;color:var(--blue)}
 .camera-close .icon{width:15px;height:15px}
 .camera-preview-video-wrap{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;background:#e9ebef}
-.camera-preview video{display:block;width:100%;height:100%;object-fit:cover;transform:scaleX(-1);filter:blur(14px);scale:1.12}
-.camera-preview-avatar{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;background:rgba(255,255,255,0.45)}
-.camera-preview-avatar img{width:68%;height:68%;object-fit:contain;filter:drop-shadow(0 2px 8px #0003);margin-right:8%}
+.camera-preview video{display:block;width:100%;height:100%;object-fit:cover;transform:scaleX(-1)}
 @media(max-width:760px){.camera-controls{margin-left:0}.camera-toggle{min-height:26px;padding:4px 8px;font-size:9px;gap:5px}.camera-toggle .icon{width:13px;height:13px}.camera-preview{top:auto;bottom:16px;right:12px;width:144px}.camera-preview-header{padding:4px 5px 4px 9px;font-size:10px}.camera-message{right:auto;left:0}.topbar:has(.camera-controls){gap:8px}.topbar:has(.camera-controls) .topbar-caption{display:none}}
