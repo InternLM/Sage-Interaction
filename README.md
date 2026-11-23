@@ -11,7 +11,7 @@
 
 [English](README.md) | [简体中文](README_zh-CN.md)
 
-[Project page](https://internlm.github.io/Sage-Interaction/)
+[Project page](https://internlm.github.io/Sage-Interaction/) | [Hugging Face](https://huggingface.co/internlm/Sage-Interaction)
 
 </div>
 
@@ -27,6 +27,10 @@ Sage-Interaction operates within a coordinated frontend–backend system. The fr
 - **Agentic task delegation.** Identify tasks suitable for delegation, submit them for asynchronous background execution, and incorporate returned results into subsequent conversation while remaining responsive to the user.
 - **Streaming video understanding.** Understand evolving visual context, respond proactively to relevant events, and support delegation of tasks grounded in a live video stream.
 - **Scenario-grounded interaction training.** Generate interaction trajectories with a role-playing multi-agent system grounded in real-world scenarios. An asymmetric audio-video supervision objective accounts for denser audio signals and sparser video signals.
+
+### Quick Start
+
+For installation and usage, see the [Demo guide](demo/README.md).
 
 ## Performance
 
@@ -70,7 +74,11 @@ Sage-Interaction achieves **21.6 mIoU on Charades** and **42.3 PAUC on Proactive
 
 https://github.com/user-attachments/assets/5c4da4f5-a9a6-40ce-aa26-0f734e18f8bc
 
-For installation and usage, see the [Demo guide](demo/README.md).
+## Acknowledgments
+
+This work was supported by the Shanghai Artificial Intelligence Laboratory.
+
+We are especially grateful to the developers and maintainers of [MiniCPM-o 4.5](https://github.com/OpenBMB/MiniCPM-V), [Qwen3-TTS](https://github.com/QwenLM/Qwen3-TTS), [Qwen3-ASR](https://github.com/QwenLM/Qwen3-ASR), [Whisper](https://github.com/openai/whisper), and [DeepSeek-V4.1-Flash](https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash) for sharing models and tools that were essential to this work. We thank the [JoyAI-VL-Interaction](https://github.com/jd-opensource/JoyAI-VL-Interaction) team for open-sourcing their data. We also thank our colleagues and collaborators who supported the development of Sage-Interaction and its associated datasets.
 
 ## Citation
 
