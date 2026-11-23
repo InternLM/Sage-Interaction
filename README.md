@@ -11,7 +11,9 @@
 
 [English](README.md) | [简体中文](README_zh-CN.md)
 
-[Introduction](#introduction) • [Demo](#demo) • [Performance](#performance)
+[Project page](https://internlm.github.io/Sage-Interaction/)
+
+[Introduction](#introduction) • [Performance](#performance) • [Demo](#demo)
 
 </div>
 
@@ -27,22 +29,6 @@ Sage-Interaction operates within a coordinated frontend–backend system. The fr
 - **Agentic task delegation.** Identify tasks suitable for delegation, submit them for asynchronous background execution, and incorporate returned results into subsequent conversation while remaining responsive to the user.
 - **Streaming video understanding.** Understand evolving visual context, respond proactively to relevant events, and support delegation of tasks grounded in a live video stream.
 - **Scenario-grounded interaction training.** Generate interaction trajectories with a role-playing multi-agent system grounded in real-world scenarios. An asymmetric audio-video supervision objective accounts for denser audio signals and sparser video signals.
-
-## Demo
-
-### Task Delegation
-
-https://github.com/user-attachments/assets/5c4da4f5-a9a6-40ce-aa26-0f734e18f8bc
-
-### Lab Protocol Assistance
-
-https://github.com/user-attachments/assets/4bf66cba-deb8-4a90-9668-443e9f493e19
-
-### Lab Safety Alerts
-
-https://github.com/user-attachments/assets/f8e29f62-af42-41c1-b9b3-24826cd6bc75
-
-For installation and usage, see the [Demo guide](demo/README.md).
 
 ## Performance
 
@@ -79,3 +65,19 @@ Sage-Interaction achieves **21.6 mIoU on Charades** and **42.3 PAUC on Proactive
 <p align="center">
   <img src="assets/video-benchmarks.png" alt="Streaming video results on Charades, ProactiveQA, StreamingBench, DailyOmni, OmniVideoBench, and LVOmniBench." width="100%" />
 </p>
+
+## Demo
+
+### Task Delegation
+
+https://github.com/user-attachments/assets/5c4da4f5-a9a6-40ce-aa26-0f734e18f8bc
+
+### Lab Protocol Assistance
+
+https://github.com/user-attachments/assets/4bf66cba-deb8-4a90-9668-443e9f493e19
+
+### Lab Safety Alerts
+
+https://github.com/user-attachments/assets/f8e29f62-af42-41c1-b9b3-24826cd6bc75
+
+For installation and usage, see the [Demo guide](demo/README.md).

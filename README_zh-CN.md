@@ -12,7 +12,9 @@
 
 [English](README.md) | [简体中文](README_zh-CN.md)
 
-[简介](#简介) • [Demo](#demo) • [性能评估](#性能评估)
+[项目主页](https://internlm.github.io/Sage-Interaction/)
+
+[简介](#简介) • [性能评估](#性能评估) • [Demo](#demo)
 
 </div>
 
@@ -28,22 +30,6 @@ Sage-Interaction 运行于前台与后台协同的系统中：前台负责实时
 - **智能体任务委托。** 识别适合委托的任务，提交后台异步执行，并将返回结果用于后续对话，在任务执行期间持续响应用户。
 - **流式视频理解。** 理解动态变化的视觉上下文，对相关事件主动响应，并支持基于实时视频内容的任务委托。
 - **真实场景驱动的交互训练。** 通过基于真实场景的角色扮演多智能体系统生成交互轨迹，并采用音视频非对称监督目标，兼顾较密集的音频信号与较稀疏的视频信号。
-
-## Demo
-
-### 任务委托
-
-https://github.com/user-attachments/assets/5c4da4f5-a9a6-40ce-aa26-0f734e18f8bc
-
-### 实验流程辅助
-
-https://github.com/user-attachments/assets/4bf66cba-deb8-4a90-9668-443e9f493e19
-
-### 实验室安全提醒
-
-https://github.com/user-attachments/assets/f8e29f62-af42-41c1-b9b3-24826cd6bc75
-
-安装与使用方法见 [Demo 使用说明](demo/README_zh-CN.md)。
 
 ## 性能评估
 
@@ -80,3 +66,19 @@ Sage-Interaction 在 **Charades 上取得 21.6 mIoU**，在 **ProactiveQA 上取
 <p align="center">
   <img src="assets/video-benchmarks.png" alt="Charades、ProactiveQA、StreamingBench、DailyOmni、OmniVideoBench 和 LVOmniBench 六项视频评测结果。" width="100%" />
 </p>
+
+## Demo
+
+### 任务委托
+
+https://github.com/user-attachments/assets/5c4da4f5-a9a6-40ce-aa26-0f734e18f8bc
+
+### 实验流程辅助
+
+https://github.com/user-attachments/assets/4bf66cba-deb8-4a90-9668-443e9f493e19
+
+### 实验室安全提醒
+
+https://github.com/user-attachments/assets/f8e29f62-af42-41c1-b9b3-24826cd6bc75
+
+安装与使用方法见 [Demo 使用说明](demo/README_zh-CN.md)。
