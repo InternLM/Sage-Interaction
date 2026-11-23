@@ -14,8 +14,6 @@
 
 [项目主页](https://internlm.github.io/Sage-Interaction/)
 
-[简介](#简介) • [性能评估](#性能评估) • [Demo](#demo)
-
 </div>
 
 ## 简介
@@ -73,12 +71,14 @@ Sage-Interaction 在 **Charades 上取得 21.6 mIoU**，在 **ProactiveQA 上取
 
 https://github.com/user-attachments/assets/5c4da4f5-a9a6-40ce-aa26-0f734e18f8bc
 
-### 实验流程辅助
-
-https://github.com/user-attachments/assets/4bf66cba-deb8-4a90-9668-443e9f493e19
-
-### 实验室安全提醒
-
-https://github.com/user-attachments/assets/f8e29f62-af42-41c1-b9b3-24826cd6bc75
-
 安装与使用方法见 [Demo 使用说明](demo/README_zh-CN.md)。
+
+## 引用
+
+```bibtex
+@misc{sage_interaction,
+  title = {Sage-Interaction: An Omni Interaction Model with Agentic Task Delegation},
+  howpublished = {GitHub repository},
+  url = {https://github.com/InternLM/Sage-Interaction}
+}
+```

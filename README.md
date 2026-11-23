@@ -13,8 +13,6 @@
 
 [Project page](https://internlm.github.io/Sage-Interaction/)
 
-[Introduction](#introduction) • [Performance](#performance) • [Demo](#demo)
-
 </div>
 
 ## Introduction
@@ -72,12 +70,14 @@ Sage-Interaction achieves **21.6 mIoU on Charades** and **42.3 PAUC on Proactive
 
 https://github.com/user-attachments/assets/5c4da4f5-a9a6-40ce-aa26-0f734e18f8bc
 
-### Lab Protocol Assistance
-
-https://github.com/user-attachments/assets/4bf66cba-deb8-4a90-9668-443e9f493e19
-
-### Lab Safety Alerts
-
-https://github.com/user-attachments/assets/f8e29f62-af42-41c1-b9b3-24826cd6bc75
-
 For installation and usage, see the [Demo guide](demo/README.md).
+
+## Citation
+
+```bibtex
+@misc{sage_interaction,
+  title = {Sage-Interaction: An Omni Interaction Model with Agentic Task Delegation},
+  howpublished = {GitHub repository},
+  url = {https://github.com/InternLM/Sage-Interaction}
+}
+```
