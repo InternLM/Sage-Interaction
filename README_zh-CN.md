@@ -79,7 +79,7 @@ https://github.com/user-attachments/assets/5c4da4f5-a9a6-40ce-aa26-0f734e18f8bc
 
 本研究得到上海人工智能实验室的支持。
 
-特别感谢 [MiniCPM-o 4.5](https://github.com/OpenBMB/MiniCPM-V)、[Qwen3-TTS](https://github.com/QwenLM/Qwen3-TTS)、[Qwen3-ASR](https://github.com/QwenLM/Qwen3-ASR)、[Whisper](https://github.com/openai/whisper) 和 [DeepSeek-V4.1-Flash](https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash) 的开发者与维护者，他们开放的模型和工具为本研究提供了重要支持。感谢 [JoyAI-VL-Interaction](https://github.com/jd-opensource/JoyAI-VL-Interaction) 团队开源数据。我们还要感谢支持 Sage-Interaction 模型及相关数据集开发工作的同事与合作者。
+特别感谢 [MiniCPM-o 4.5](https://github.com/OpenBMB/MiniCPM-V)、[Qwen3-TTS](https://github.com/QwenLM/Qwen3-TTS)、[Qwen3-ASR](https://github.com/QwenLM/Qwen3-ASR)、[Whisper](https://github.com/openai/whisper)、[DeepSeek-V4.1-Flash](https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash) 和 [JoyAI-VL-Interaction](https://github.com/jd-opensource/JoyAI-VL-Interaction) 等开源项目的开发者与维护者。他们分享的模型、工具及其他资源为本研究提供了重要支持。我们还要感谢支持 Sage-Interaction 模型及相关数据集开发工作的同事与合作者。
 
 ## 引用
 

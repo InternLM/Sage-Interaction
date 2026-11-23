@@ -78,7 +78,7 @@ https://github.com/user-attachments/assets/5c4da4f5-a9a6-40ce-aa26-0f734e18f8bc
 
 This work was supported by the Shanghai Artificial Intelligence Laboratory.
 
-We are especially grateful to the developers and maintainers of [MiniCPM-o 4.5](https://github.com/OpenBMB/MiniCPM-V), [Qwen3-TTS](https://github.com/QwenLM/Qwen3-TTS), [Qwen3-ASR](https://github.com/QwenLM/Qwen3-ASR), [Whisper](https://github.com/openai/whisper), and [DeepSeek-V4.1-Flash](https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash) for sharing models and tools that were essential to this work. We thank the [JoyAI-VL-Interaction](https://github.com/jd-opensource/JoyAI-VL-Interaction) team for open-sourcing their data. We also thank our colleagues and collaborators who supported the development of Sage-Interaction and its associated datasets.
+We are especially grateful to the developers and maintainers of [MiniCPM-o 4.5](https://github.com/OpenBMB/MiniCPM-V), [Qwen3-TTS](https://github.com/QwenLM/Qwen3-TTS), [Qwen3-ASR](https://github.com/QwenLM/Qwen3-ASR), [Whisper](https://github.com/openai/whisper), [DeepSeek-V4.1-Flash](https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash), and [JoyAI-VL-Interaction](https://github.com/jd-opensource/JoyAI-VL-Interaction), among others, for sharing models, tools, and other resources that supported this work. We also thank our colleagues and collaborators who supported the development of Sage-Interaction and its associated datasets.
 
 ## Citation
 
