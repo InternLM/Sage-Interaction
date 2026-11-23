@@ -369,10 +369,6 @@
     margin: 0 auto 36px;
     padding: 0;
   }
-  #main.post article.content .demo-item + .demo-item {
-    padding-top: 32px;
-    border-top: 1px solid #d9dddf;
-  }
   #main.post article.content .demo-item video {
     display: block;
     width: min(100%, 760px);
@@ -1032,18 +1028,8 @@
 <section class="demos-section" aria-labelledby="demos-title">
   <figure class="demo-item" data-owned-figure>
     <p class="demo-description" data-i18n="demo-one-copy">When faced with complex calculations, Sage-Interaction delegates challenging mathematical and scientific tasks to a backend model. It parses the problem without interrupting the user's foreground interaction, then returns the correct answer once the result is available. If the user interrupts, the model can stop speaking proactively and respond to the new request.</p>
-    <video controls playsinline preload="none" data-demo-src="https://github.com/user-attachments/assets/5c4da4f5-a9a6-40ce-aa26-0f734e18f8bc" data-demo-poster="assets/demo_1-poster.jpg" aria-label="Demo 1" data-i18n-attr="aria-label:demo-one"></video>
-    <figcaption data-i18n="demo-one">Demo 1. Complex task delegation</figcaption>
-  </figure>
-  <figure class="demo-item" data-owned-figure>
-    <p class="demo-description" data-i18n="demo-two-copy">In scientific laboratory settings, the model can help researchers design experiments and provide the next procedural steps.</p>
-    <video controls playsinline preload="none" data-demo-src="https://github.com/user-attachments/assets/4bf66cba-deb8-4a90-9668-443e9f493e19" data-demo-poster="assets/demo_2-poster.jpg" aria-label="Demo 2" data-i18n-attr="aria-label:demo-two"></video>
-    <figcaption data-i18n="demo-two">Demo 2. Experiment planning</figcaption>
-  </figure>
-  <figure class="demo-item" data-owned-figure>
-    <p class="demo-description" data-i18n="demo-three-copy">The model can also monitor laboratory safety and issue reminders at appropriate times.</p>
-    <video controls playsinline preload="none" data-demo-src="https://github.com/user-attachments/assets/f8e29f62-af42-41c1-b9b3-24826cd6bc75" data-demo-poster="assets/demo_3-poster.jpg" aria-label="Demo 3" data-i18n-attr="aria-label:demo-three"></video>
-    <figcaption data-i18n="demo-three">Demo 3. Laboratory safety monitoring</figcaption>
+    <video controls playsinline preload="none" data-demo-src="assets/demo_1.mp4" data-demo-poster="assets/demo_1-poster.jpg" aria-label="Complex task delegation demo" data-i18n-attr="aria-label:demo-one"></video>
+    <figcaption data-i18n="demo-one">Complex task delegation</figcaption>
   </figure>
 </section>
 <h2 id="acknowledgments-title" data-i18n="acknowledgments-title">Acknowledgments</h2>
@@ -1053,7 +1039,6 @@
 <h2 id="citation-title" data-i18n="citation-title">Citation</h2>
 <section class="backmatter-section" aria-labelledby="citation-title">
   <div class="citation-block">
-    <p data-i18n="citation-intro">If you use this work, please cite:</p>
     <pre><code id="sage-citation">@misc{sageinteraction2026,
   title        = {Sage-Interaction},
   author       = {Sage-Interaction Team},
@@ -1128,16 +1113,11 @@
       "scope-copy": "本报告沿用页面中的基准测试图表和表格。破折号表示当前对比未提供该项分数，并不代表零分。9B 参数量来自所提供的模型说明，基准测试材料本身未注明此信息。评测样本量、模型版本和推理设置也未提供，因此这里只作描述性呈现，不对统计显著性作出结论。",
       "model-evaluation": "模型评测",
       "demos-title": "演示视频",
-      "demo-one": "演示 1. 复杂任务委托",
+      "demo-one": "复杂任务委托演示",
       "demo-one-copy": "面对复杂计算时，Sage-Interaction 会将数学和科学计算任务委派给后台模型，在不影响前台与用户交互的情况下解析问题，并在返回结果后将正确答案回复给用户。用户进行打断时，模型也可以主动停止回复，并响应用户的新要求。",
-      "demo-two": "演示 2. 实验流程设计",
-      "demo-two-copy": "在科学实验室场景中，模型可以帮助科研人员设计实验，并给出接下来的流程步骤。",
-      "demo-three": "演示 3. 实验室安全监控",
-      "demo-three-copy": "模型还可以监控实验室安全，并在合适的时间发出提醒。",
       "acknowledgments-title": "致谢",
       "acknowledgments-copy": "感谢 <a href=\"https://github.com/OpenBMB/MiniCPM-V\" target=\"_blank\" rel=\"noopener noreferrer\">MiniCPM-o 4.5</a> 团队开源模型，感谢 <a href=\"https://github.com/jd-opensource/JoyAI-VL-Interaction\" target=\"_blank\" rel=\"noopener noreferrer\">JoyAI-VL-Interaction</a> 团队开源数据。我们还要感谢支持 Sage-Interaction 模型及相关数据集开发工作的同事与合作者。",
-      "citation-title": "引用",
-      "citation-intro": "如果您使用了本项目，请引用："
+      "citation-title": "引用"
     };
     const buttons = Array.from(document.querySelectorAll("[data-language]"));
     const languageFrame = document.querySelector("#model-evaluation iframe");
