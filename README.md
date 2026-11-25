@@ -4,16 +4,36 @@
 
 **An Omni Interaction Model with Agentic Task Delegation**
 
+[🌐 Project Page](https://internlm.github.io/Sage-Interaction/) •
+[🤗 Hugging Face](https://huggingface.co/internlm/Sage-Interaction) •
+[<img src="assets/modelscope-logo.png" height="14" alt="" /> ModelScope](https://modelscope.cn/models/Shanghai_AI_Laboratory/Sage-Interaction) •
+[🚀 Quick Start](#quick-start) •
+[🎬 Demo](#demo)
+
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+
+[English](README.md) | [简体中文](README_zh-CN.md)
+
 <a href="assets/sage-overview.png">
   <img src="assets/sage-overview.png" alt="Sage-Interaction in six scenarios: information retrieval, timed reminders, travel planning, scientific calculation, safety alerts, and laboratory assistance." width="100%" />
 </a>
 
-
-[English](README.md) | [简体中文](README_zh-CN.md)
-
-[Project page](https://internlm.github.io/Sage-Interaction/) | [Hugging Face](https://huggingface.co/internlm/Sage-Interaction)
-
 </div>
+
+<p align="center">
+  <a href="#news">News</a> ·
+  <a href="#introduction">Introduction</a> ·
+  <a href="#model-downloads">Model Downloads</a> ·
+  <a href="#performance">Performance</a> ·
+  <a href="#quick-start">Quick Start</a> ·
+  <a href="#demo">Demo</a> ·
+  <a href="#license">License</a> ·
+  <a href="#citation">Citation</a>
+</p>
+
+## News
+
+- **[2026-11-23]** 🎉 We release **Sage-Interaction**, a 9B omni interaction model with agentic task delegation. Weights are available on [Hugging Face](https://huggingface.co/internlm/Sage-Interaction) and [ModelScope](https://modelscope.cn/models/Shanghai_AI_Laboratory/Sage-Interaction), together with a [real-time voice demo](demo/README.md).
 
 ## Introduction
 
@@ -28,9 +48,11 @@ Sage-Interaction operates within a coordinated frontend–backend system. The fr
 - **Streaming video understanding.** Understand evolving visual context, respond proactively to relevant events, and support delegation of tasks grounded in a live video stream.
 - **Scenario-grounded interaction training.** Generate interaction trajectories with a role-playing multi-agent system grounded in real-world scenarios. An asymmetric audio-video supervision objective accounts for denser audio signals and sparser video signals.
 
-### Quick Start
+## Model Downloads
 
-For installation and usage, see the [Demo guide](demo/README.md).
+| Model | Parameters | Base model | Hugging Face | ModelScope |
+| --- | --- | --- | --- | --- |
+| Sage-Interaction | 9B | MiniCPM-o 4.5 | [🤗 internlm/Sage-Interaction](https://huggingface.co/internlm/Sage-Interaction) | [Shanghai_AI_Laboratory/Sage-Interaction](https://modelscope.cn/models/Shanghai_AI_Laboratory/Sage-Interaction) |
 
 ## Performance
 
@@ -68,6 +90,42 @@ Sage-Interaction achieves **21.6 mIoU on Charades** and **42.3 PAUC on Proactive
   <img src="assets/video-benchmarks.png" alt="Streaming video results on Charades, ProactiveQA, StreamingBench, DailyOmni, OmniVideoBench, and LVOmniBench." width="100%" />
 </p>
 
+## Quick Start
+
+The real-time voice demo runs Sage-Interaction as the frontend model and connects to an OpenAI-compatible API as the backend for delegated tasks. It requires Linux, a BF16-capable NVIDIA GPU, Python 3.12, and a CUDA 12.8 toolkit.
+
+**1. Install**
+
+```bash
+git clone https://github.com/InternLM/Sage-Interaction.git
+cd Sage-Interaction/demo
+python3.12 -m venv .venv && source .venv/bin/activate
+mkdir -p .cache/tmp && export TMPDIR="$PWD/.cache/tmp" PIP_NO_CACHE_DIR=1
+python -m pip install --upgrade pip setuptools wheel packaging ninja
+python -m pip install -r requirements.txt
+python -m pip install flash-attn==2.8.3 --no-build-isolation
+python scripts/prepare_environment.py
+```
+
+**2. Download the model**
+
+```bash
+huggingface-cli download internlm/Sage-Interaction --local-dir models/sage-interaction
+# or from ModelScope:
+# pip install modelscope && modelscope download --model Shanghai_AI_Laboratory/Sage-Interaction --local_dir models/sage-interaction
+```
+
+**3. Configure and start**
+
+```bash
+cp config.example.json config.local.json   # set backend_base_url and backend_model_name
+bash start_demo.sh --config config.local.json --gpu 0 --instances 1
+```
+
+Enter the backend API key when prompted (or set `SAGE_BACKEND_API_KEY`). When `Demo ready` appears, open <http://127.0.0.1:18080/> and allow microphone access.
+
+See the [Demo guide](demo/README.md) for all configuration fields, multi-GPU workers, and remote access.
+
 ## Demo
 
 ### Task Delegation
@@ -80,7 +138,14 @@ This work was supported by the Shanghai Artificial Intelligence Laboratory.
 
 We are especially grateful to the developers and maintainers of [MiniCPM-o 4.5](https://github.com/OpenBMB/MiniCPM-V), [Qwen3-TTS](https://github.com/QwenLM/Qwen3-TTS), [Qwen3-ASR](https://github.com/QwenLM/Qwen3-ASR), [Whisper](https://github.com/openai/whisper), [DeepSeek-V4.1-Flash](https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash), and [JoyAI-VL-Interaction](https://github.com/jd-opensource/JoyAI-VL-Interaction), among others, for sharing models, tools, and other resources that supported this work. We also thank our colleagues and collaborators who supported the development of Sage-Interaction and its associated datasets.
 
-  
+## License
+
+The code in this repository and the Sage-Interaction model weights are released under the [Apache License 2.0](LICENSE).
+
+## Citation
+
+If you find Sage-Interaction useful in your research, please consider citing:
+
 ```bibtex
 @misc{sage_interaction,
   title = {Sage-Interaction: An Omni Interaction Model with Agentic Task Delegation},

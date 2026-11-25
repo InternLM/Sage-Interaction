@@ -4,17 +4,38 @@
 
 **具备智能体任务委托能力的全模态交互模型**
 
+全双工交互，异步任务执行。
+
+[🌐 项目主页](https://internlm.github.io/Sage-Interaction/) •
+[🤗 Hugging Face](https://huggingface.co/internlm/Sage-Interaction) •
+[<img src="assets/modelscope-logo.png" height="14" alt="" /> ModelScope](https://modelscope.cn/models/Shanghai_AI_Laboratory/Sage-Interaction) •
+[🚀 快速开始](#快速开始) •
+[🎬 Demo](#demo)
+
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+
+[English](README.md) | [简体中文](README_zh-CN.md)
+
 <a href="assets/sage-overview.png">
   <img src="assets/sage-overview.png" alt="Sage-Interaction 的六类代表性场景：信息检索、定时提醒、旅行规划、科学计算、安全监控和实验室助手。" width="100%" />
 </a>
 
-全双工交互，异步任务执行。
-
-[English](README.md) | [简体中文](README_zh-CN.md)
-
-[项目主页](https://internlm.github.io/Sage-Interaction/) | [Hugging Face](https://huggingface.co/internlm/Sage-Interaction)
-
 </div>
+
+<p align="center">
+  <a href="#最新动态">最新动态</a> ·
+  <a href="#简介">简介</a> ·
+  <a href="#模型下载">模型下载</a> ·
+  <a href="#性能评估">性能评估</a> ·
+  <a href="#快速开始">快速开始</a> ·
+  <a href="#demo">Demo</a> ·
+  <a href="#开源协议">开源协议</a> ·
+  <a href="#引用">引用</a>
+</p>
+
+## 最新动态
+
+- **[2026-11-23]** 🎉 发布 **Sage-Interaction**：具备智能体任务委托能力的 9B 全模态交互模型。模型权重已在 [Hugging Face](https://huggingface.co/internlm/Sage-Interaction) 和 [ModelScope](https://modelscope.cn/models/Shanghai_AI_Laboratory/Sage-Interaction) 开放，并同步提供[实时语音 Demo](demo/README_zh-CN.md)。
 
 ## 简介
 
@@ -29,9 +50,11 @@ Sage-Interaction 运行于前台与后台协同的系统中：前台负责实时
 - **流式视频理解。** 理解动态变化的视觉上下文，对相关事件主动响应，并支持基于实时视频内容的任务委托。
 - **真实场景驱动的交互训练。** 通过基于真实场景的角色扮演多智能体系统生成交互轨迹，并采用音视频非对称监督目标，兼顾较密集的音频信号与较稀疏的视频信号。
 
-### 快速开始
+## 模型下载
 
-安装与使用方法见 [Demo 使用说明](demo/README_zh-CN.md)。
+| 模型 | 参数量 | 基座模型 | Hugging Face | ModelScope |
+| --- | --- | --- | --- | --- |
+| Sage-Interaction | 9B | MiniCPM-o 4.5 | [🤗 internlm/Sage-Interaction](https://huggingface.co/internlm/Sage-Interaction) | [Shanghai_AI_Laboratory/Sage-Interaction](https://modelscope.cn/models/Shanghai_AI_Laboratory/Sage-Interaction) |
 
 ## 性能评估
 
@@ -69,6 +92,42 @@ Sage-Interaction 在 **Charades 上取得 21.6 mIoU**，在 **ProactiveQA 上取
   <img src="assets/video-benchmarks.png" alt="Charades、ProactiveQA、StreamingBench、DailyOmni、OmniVideoBench 和 LVOmniBench 六项视频评测结果。" width="100%" />
 </p>
 
+## 快速开始
+
+实时语音 Demo 以 Sage-Interaction 作为前台模型，并连接一个 OpenAI 兼容的 API 作为后台，执行委托的任务。运行环境需要 Linux、支持 BF16 的 NVIDIA GPU、Python 3.12 和 CUDA 12.8 工具链。
+
+**1. 安装**
+
+```bash
+git clone https://github.com/InternLM/Sage-Interaction.git
+cd Sage-Interaction/demo
+python3.12 -m venv .venv && source .venv/bin/activate
+mkdir -p .cache/tmp && export TMPDIR="$PWD/.cache/tmp" PIP_NO_CACHE_DIR=1
+python -m pip install --upgrade pip setuptools wheel packaging ninja
+python -m pip install -r requirements.txt
+python -m pip install flash-attn==2.8.3 --no-build-isolation
+python scripts/prepare_environment.py
+```
+
+**2. 下载模型**
+
+```bash
+huggingface-cli download internlm/Sage-Interaction --local-dir models/sage-interaction
+# 或从 ModelScope 下载：
+# pip install modelscope && modelscope download --model Shanghai_AI_Laboratory/Sage-Interaction --local_dir models/sage-interaction
+```
+
+**3. 配置并启动**
+
+```bash
+cp config.example.json config.local.json   # 修改 backend_base_url 和 backend_model_name
+bash start_demo.sh --config config.local.json --gpu 0 --instances 1
+```
+
+按提示输入后台 API key（或设置环境变量 `SAGE_BACKEND_API_KEY`）。出现 `Demo ready` 后，打开 <http://127.0.0.1:18080/> 并允许麦克风权限。
+
+全部配置项、多 GPU 运行和远程访问方法见 [Demo 使用说明](demo/README_zh-CN.md)。
+
 ## Demo
 
 ### 任务委托
@@ -81,7 +140,13 @@ https://github.com/user-attachments/assets/5c4da4f5-a9a6-40ce-aa26-0f734e18f8bc
 
 特别感谢 [MiniCPM-o 4.5](https://github.com/OpenBMB/MiniCPM-V)、[Qwen3-TTS](https://github.com/QwenLM/Qwen3-TTS)、[Qwen3-ASR](https://github.com/QwenLM/Qwen3-ASR)、[Whisper](https://github.com/openai/whisper)、[DeepSeek-V4.1-Flash](https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash) 和 [JoyAI-VL-Interaction](https://github.com/jd-opensource/JoyAI-VL-Interaction) 等开源项目的开发者与维护者。他们分享的模型、工具及其他资源为本研究提供了重要支持。我们还要感谢支持 Sage-Interaction 模型及相关数据集开发工作的同事与合作者。
 
+## 开源协议
+
+本仓库代码及 Sage-Interaction 模型权重均基于 [Apache License 2.0](LICENSE) 开源。
+
 ## 引用
+
+如果 Sage-Interaction 对你的研究有帮助，欢迎引用：
 
 ```bibtex
 @misc{sage_interaction,
