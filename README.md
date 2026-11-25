@@ -80,12 +80,12 @@ This work was supported by the Shanghai Artificial Intelligence Laboratory.
 
 We are especially grateful to the developers and maintainers of [MiniCPM-o 4.5](https://github.com/OpenBMB/MiniCPM-V), [Qwen3-TTS](https://github.com/QwenLM/Qwen3-TTS), [Qwen3-ASR](https://github.com/QwenLM/Qwen3-ASR), [Whisper](https://github.com/openai/whisper), [DeepSeek-V4.1-Flash](https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash), and [JoyAI-VL-Interaction](https://github.com/jd-opensource/JoyAI-VL-Interaction), among others, for sharing models, tools, and other resources that supported this work. We also thank our colleagues and collaborators who supported the development of Sage-Interaction and its associated datasets.
 
-## Citation
-
+  
 ```bibtex
 @misc{sage_interaction,
   title = {Sage-Interaction: An Omni Interaction Model with Agentic Task Delegation},
-  howpublished = {GitHub repository},
+  author= {Sage-Interaction Team},
+  year = {2026},
   url = {https://github.com/InternLM/Sage-Interaction}
 }
 ```
