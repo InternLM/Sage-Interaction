@@ -86,7 +86,8 @@ https://github.com/user-attachments/assets/5c4da4f5-a9a6-40ce-aa26-0f734e18f8bc
 ```bibtex
 @misc{sage_interaction,
   title = {Sage-Interaction: An Omni Interaction Model with Agentic Task Delegation},
-  howpublished = {GitHub repository},
+  author= {Sage-Interaction Team},
+  year = {2026},
   url = {https://github.com/InternLM/Sage-Interaction}
 }
 ```

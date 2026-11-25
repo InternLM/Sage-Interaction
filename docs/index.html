@@ -446,6 +446,49 @@
     color: #46525c;
     font: 18px/1.5 var(--font-sans);
   }
+  #main.post article.content .report-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 16px;
+    margin: 18px 0 0;
+    font: 14px/1.5 var(--font-sans);
+  }
+  #main.post article.content .report-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border: 1px solid #d4d4d4;
+    border-radius: 6px;
+    background: #fafafa;
+    color: #000;
+    font-weight: 600;
+    text-decoration: none;
+    transition: border-color .2s ease, background-color .2s ease, transform .2s ease;
+  }
+  #main.post article.content .report-links a:hover,
+  #main.post article.content .report-links a:focus-visible {
+    border-color: #888;
+    background: #fff;
+    color: #000;
+    text-decoration: none;
+    transform: translateY(-1px);
+  }
+  #main.post article.content .report-link-icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
+    object-fit: contain;
+  }
+  #main.post article.content .report-link-icon-github {
+    filter: brightness(0);
+  }
+  #main.post article.content .report-link-icon-huggingface {
+    width: 24px;
+    height: 24px;
+    flex-basis: 24px;
+  }
   #main.post article.content .technical-report-figure {
     width: min(1080px, calc(100vw - 32px));
     max-width: none;
@@ -560,6 +603,10 @@
     document.querySelector("[data-report-image]").src = new URL("assets/sage-overview.png?v=6022dcbd", window.location.href).href;
   </script>
   <p class="technical-report-summary" data-i18n-html="summary"><strong>Summary.</strong> Sage-Interaction reaches <strong>80.73 Interaction Quality</strong> at <strong>1.29 s Turn Taking Latency</strong> on the supplied comparison. Voice results show strong interruption and resumption behavior. Sage-Interaction has the highest F1 on Daily Delegation and the second-highest on Time Speak. It leads the displayed video comparisons on Charades, ProactiveQA, OmniVideoBench, and LVOmniBench.</p>
+  <nav class="report-links" aria-label="Project links">
+    <a href="https://github.com/InternLM/Sage-Interaction" target="_blank" rel="noopener noreferrer"><img class="report-link-icon report-link-icon-github" src="assets/github-mark-white.png" alt=""><span>Sage-Interaction Official Repository</span></a>
+    <a href="https://huggingface.co/internlm/Sage-Interaction" target="_blank" rel="noopener noreferrer"><img class="report-link-icon report-link-icon-huggingface" src="assets/hf-logo.png" alt=""><span>Sage-Interaction Model</span></a>
+  </nav>
 </section>
 <h2 id="frontier" data-i18n="frontier-title">Frontier Full-Duplex Model</h2>
 <div class="report-narrative">
@@ -1040,11 +1087,11 @@
 <h2 id="citation-title" data-i18n="citation-title">Citation</h2>
 <section class="backmatter-section" aria-labelledby="citation-title">
   <div class="citation-block">
-    <pre><code id="sage-citation">@misc{sageinteraction2026,
-  title        = {Sage-Interaction},
-  author       = {Sage-Interaction Team},
-  year         = {2026},
-  note         = {Technical report}
+    <pre><code id="sage-citation">@misc{sage_interaction,
+  title = {Sage-Interaction: An Omni Interaction Model with Agentic Task Delegation},
+  author= {Sage-Interaction Team},
+  year = {2026},
+  url = {https://github.com/InternLM/Sage-Interaction}
 }</code></pre>
   </div>
 </section>
